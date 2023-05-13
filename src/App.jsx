@@ -9,15 +9,29 @@ const ShoppingList = () => {
   const [editIndex, setEditIndex] = useState(-1);
 
   useEffect(() => {
+    calculateTotalPrice(items);
+  }, [items]);
+
+  useEffect(() => {
     const storedItems = localStorage.getItem("shoppingListItems");
     if (storedItems) {
       setItems(JSON.parse(storedItems));
     }
+
+    calculateTotalPriceOnLoad();
   }, []);
 
   useEffect(() => {
     localStorage.setItem("shoppingListItems", JSON.stringify(items));
   }, [items]);
+
+  useEffect(() => {
+    calculateTotalPrice(items);
+  }, [items]);
+  
+  const calculateTotalPriceOnLoad = () => {
+    calculateTotalPrice(items);
+  };
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -39,7 +53,7 @@ const ShoppingList = () => {
         quantity: parseInt(quantity),
         price: parseFloat(price),
       };
-
+  
       setItems([...items, newItem]);
       setTotalPrice(totalPrice + parseFloat(price) * parseInt(quantity));
       setName("");
@@ -47,6 +61,7 @@ const ShoppingList = () => {
       setPrice("");
     }
   };
+  
 
   const handleEdit = (index) => {
     const item = items[index];
@@ -83,7 +98,7 @@ const ShoppingList = () => {
   };
 
   const handleDelete = (index) => {
-    const deletedItem = items[index];
+    /* const deletedItem = items[index]; */
     const updatedItems = items.filter((_, i) => i !== index);
     setItems(updatedItems);
     calculateTotalPrice(updatedItems);
