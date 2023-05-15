@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./App.css";
 
 const ShoppingList = () => {
   const [items, setItems] = useState([]);
@@ -28,7 +29,7 @@ const ShoppingList = () => {
   useEffect(() => {
     calculateTotalPrice(items);
   }, [items]);
-  
+
   const calculateTotalPriceOnLoad = () => {
     calculateTotalPrice(items);
   };
@@ -53,7 +54,7 @@ const ShoppingList = () => {
         quantity: parseInt(quantity),
         price: parseFloat(price),
       };
-  
+
       setItems([...items, newItem]);
       setTotalPrice(totalPrice + parseFloat(price) * parseInt(quantity));
       setName("");
@@ -61,7 +62,6 @@ const ShoppingList = () => {
       setPrice("");
     }
   };
-  
 
   const handleEdit = (index) => {
     const item = items[index];
@@ -113,73 +113,87 @@ const ShoppingList = () => {
 
   return (
     <div>
-      <h2>Lista de Compras</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Producto:</label>
-        <input
-          type="text"
-          id="name"
-          value={name}
-          onChange={handleNameChange}
-          required
-        />
+      <h1 className="title_app">Lista de Compras</h1>
+      <>
+        <form onSubmit={handleSubmit} className="add_input">
+          <p>Total: ${totalPrice.toFixed(2)}</p>
+          <div
+            /* className="add_input_button" */
+          >
+            +
+          </div>
+          <input
+            placeholder="Producto"
+            type="text"
+            id="name"
+            value={name}
+            onChange={handleNameChange}
+            required
+          />
 
-        <label htmlFor="quantity">Cantidad:</label>
-        <input
-          type="number"
-          id="quantity"
-          value={quantity}
-          onChange={handleQuantityChange}
-          required
-        />
+          <input
+            placeholder="Cantidad"
+            type="number"
+            id="quantity"
+            value={quantity}
+            onChange={handleQuantityChange}
+            required
+          />
 
-        <label htmlFor="price">Precio:</label>
-        <input
-          type="number"
-          step="0.01"
-          id="price"
-          value={price}
-          onChange={handlePriceChange}
-          required
-        />
+          <input
+            placeholder="Precio"
+            type="number"
+            step="0.01"
+            id="price"
+            value={price}
+            onChange={handlePriceChange}
+            required
+          />
 
-        <button type="submit">Agregar</button>
-      </form>
-
+          <button className="button_style" type="submit">Agregar</button>
+        </form>
+      </>
       <ul>
         {items.map((item, index) => (
           <li key={index}>
             {editIndex === index ? (
               <>
-                <input type="text" value={name} onChange={handleNameChange} />
-                <input
-                  type="number"
-                  value={quantity}
-                  onChange={handleQuantityChange}
-                />
-                <input
-                  type="number"
-                  step="0.01"
-                  value={price}
-                  onChange={handlePriceChange}
-                />
-                <button onClick={handleCancelEdit}>Cancelar</button>
-                <button onClick={() => handleUpdate(index)}>Actualizar</button>
+                <div>
+                  <input type="text" value={name} onChange={handleNameChange} />
+                  <input
+                    type="number"
+                    value={quantity}
+                    onChange={handleQuantityChange}
+                  />
+                  <input
+                    type="number"
+                    step="0.01"
+                    value={price}
+                    onChange={handlePriceChange}
+                  />
+                  <button onClick={handleCancelEdit}>Cancelar</button>
+                  <button onClick={() => handleUpdate(index)}>
+                    Actualizar
+                  </button>
+                </div>
               </>
             ) : (
               <>
-                <span>
-                  {item.name} - Cantidad: {item.quantity} - Precio: $
-                  {item.price.toFixed(2)}
-                </span>
-                <button onClick={() => handleEdit(index)}>Editar</button>
-                <button onClick={() => handleDelete(index)}>Eliminar</button>
+                <div className="leftSide_li">
+                  <p>{item.name}</p>
+                  <p>
+                    {item.quantity}x <span>${item.price.toFixed(2)}</span>
+                  </p>
+                </div>
+                <div className="buttons_edit_delete">
+                  <button className="button_style button_edit" onClick={() => handleEdit(index)}>Editar</button>
+                  <button className="button_style button_delete" onClick={() => handleDelete(index)}>Eliminar</button>
+                </div>
               </>
             )}
           </li>
         ))}
       </ul>
-      <p>Total: ${totalPrice.toFixed(2)}</p>
     </div>
   );
 };
