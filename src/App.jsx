@@ -116,12 +116,7 @@ const ShoppingList = () => {
       <h1 className="title_app">Lista de Compras</h1>
       <>
         <form onSubmit={handleSubmit} className="add_input">
-          <p>Total: ${totalPrice.toFixed(2)}</p>
-          <div
-            /* className="add_input_button" */
-          >
-            +
-          </div>
+          <p className="totalPrice">Total: ${totalPrice.toFixed(2)}</p>
           <input
             placeholder="Producto"
             type="text"
