@@ -31,18 +31,18 @@ const ShoppingListItem = ({
             <input className="input_field" type="number" step="0.01" value={price} onChange={handlePriceChange} />
           </div>
           <div className="buttons_containerEdit">
-            <button onClick={handleCancelEdit}><DoDisturbOnOutlinedIcon /></button>
-            <button onClick={() => handleUpdate(index)}><CheckOutlinedIcon /></button>
+            <button onClick={handleCancelEdit} className="button_style btn_updtCancel"><DoDisturbOnOutlinedIcon /></button>
+            <button onClick={() => handleUpdate(index)} className="button_style btn_updtEdit"><CheckOutlinedIcon /></button>
           </div>
         </div>
       ) : (
         <div className="li_tag">
           <div className="tag_info">
-            <p>{item.name}</p>
+            <p className="tag_name">{item.name}</p>
             <p>
               {item.quantity}x <span>${item.price.toFixed(2)}</span>
             </p>
-            <p>{(item.quantity * item.price).toFixed(2)}</p>
+            <p className="total_priceTag">{(item.quantity * item.price).toFixed(2)}</p>
           </div>
           <div className="button_container">
             <button onClick={() => handleDelete(index)} className="button_delete"><DeleteForeverOutlinedIcon /></button>

@@ -8,6 +8,17 @@
   list-style: none;
 }
 
+body {
+  background-color: #e5e5f7;
+  opacity: 0.8;
+  background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #e5e5f7 18px ), repeating-linear-gradient( #d0d0d055, #d0d0d0 );
+  min-height: 100vh;
+  max-height: 100%;
+}
+
+.app {
+}
+
 .title_app {
   font-size: 2rem;
   color: #264653;
@@ -35,24 +46,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
-  height: 3rem;
+  width: 8rem;
+  height: 4rem;
   border-radius: 1.5rem;
   border: none;
   background-color: #264653;
   color: white;
   font-size: 1.2rem;
   margin-bottom: 1.5rem;
+  box-shadow: 0px 23px 3px -17px rgba(0,0,0,0.1);
+}
+
+.button_style:active {
+  background-color: #0f2229;
+  transition: cubic-bezier(0, 0, 0, 0.46);
 }
 
 ul {
   width: 90%;
   margin: auto;
-}
-
-.leftSide_li {
-  display: flex;
-  flex-direction: column;
 }
 
 p {
@@ -83,10 +95,6 @@ li {
   margin: 0.5rem;
 }
 
-.leftSide_li {
-  display: flex;
-}
-
 .totalPrice {
   font-size: 2.5rem;
   color: #264653;
@@ -107,10 +115,23 @@ span {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  max-height: 100%;
+  margin-bottom: 15px;
+  box-shadow: 0px 23px 3px -17px rgba(0,0,0,0.1);
 }
 
 .tag_info {
   width: 70%;
+}
+
+.tag_name,
+.total_priceTag {
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+.tag_name {
+  text-transform: capitalize;
 }
 
 .button_container {
@@ -123,18 +144,42 @@ span {
   right: 0;
   border: 0;
   border-radius: 0 1rem 0 0;
-  background-color: #e76f51;
+  background-color: #eb3c3c;
   width: 60px;
-  height: 40px;
+  height: 30%;
+  color: #fff;
+}
+
+.button_delete:active {
+  background-color: #ff3300;
+  transition: cubic-bezier(0, 0, 0, 0.46);
 }
 
 .button_edit {
-  background-color: #2a9d8f;
+  background-color: #00af9a;
   position: absolute;
   bottom: 0;
   right: 0;
   border-radius: 0 0 1rem 0;
   border: none;
   width: 60px;
-  height: 90px;
+  height: 70%;
+  color: #fff;
+}
+
+.buttons_containerEdit {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.btn_updtEdit {
+  margin-bottom: 0;
+  background-color: #00af9a;
+  border-radius: 1.5rem 0 0 1.5rem;
+}
+
+.btn_updtCancel {
+  margin-bottom: 0;
+  background-color: #eb3c3c;
+  border-radius: 0 1.5rem 1.5rem 0;
 }

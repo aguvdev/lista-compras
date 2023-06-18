@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import ShoppingListItem from "./components/ShoppingListItem";
-import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
+import AddShoppingCartRoundedIcon from '@mui/icons-material/AddShoppingCartRounded';
+
 import "./App.css"
 
 const ShoppingList = () => {
@@ -117,7 +118,7 @@ const ShoppingList = () => {
   };
 
   return (
-    <div>
+    <div className="app">
       <h1 className="title_app">Lista de Compras</h1>
       <form onSubmit={handleSubmit} className="add_input">
         <p className="totalPrice">${totalPrice.toFixed(2)}</p>
@@ -146,7 +147,7 @@ const ShoppingList = () => {
           onChange={handlePriceChange}
           required
         />
-        <button type="submit" className="button_style"><AddShoppingCartOutlinedIcon /></button>
+        <button type="submit" className="button_style"><AddShoppingCartRoundedIcon /></button>
       </form>
       <ul>
         {items
