@@ -42,7 +42,7 @@ const ShoppingListItem = ({
             <p>
               {item.quantity}x <span>${item.price.toFixed(2)}</span>
             </p>
-            <p className="total_priceTag">{(item.quantity * item.price).toFixed(2)}</p>
+            <p className="total_priceTag">${(item.quantity * item.price).toFixed(2)}</p>
           </div>
           <div className="button_container">
             <button onClick={() => handleDelete(index)} className="button_delete"><DeleteForeverOutlinedIcon /></button>
