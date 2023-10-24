@@ -152,7 +152,6 @@ const ShoppingList = () => {
       <ul>
         {items
           .slice()
-          .reverse()
           .map((item, index) => (
             <ShoppingListItem
               key={index}
