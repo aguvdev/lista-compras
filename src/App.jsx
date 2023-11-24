@@ -50,7 +50,7 @@ const ShoppingList = () => {
     setPrice(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  /* const handleSubmit = (e) => {
     e.preventDefault();
     if (name && quantity && price) {
       const newItem = {
@@ -61,6 +61,27 @@ const ShoppingList = () => {
 
       setItems([...items, newItem]);
       setTotalPrice(totalPrice + parseFloat(price) * parseInt(quantity));
+      setName("");
+      setQuantity("");
+      setPrice("");
+    }
+  }; */
+
+  const handleAdd = (e) => {
+    e.preventDefault();
+    if (name && quantity && price) {
+      const newItem = {
+        name,
+        quantity: parseInt(quantity),
+        price: parseFloat(price),
+      };
+  
+      // Unshift the new item to the beginning of the array
+      setItems([newItem, ...items]);
+      // Calculate the total price
+      calculateTotalPrice([...newItem, ...items]);
+  
+      // Clear input fields
       setName("");
       setQuantity("");
       setPrice("");
@@ -120,7 +141,7 @@ const ShoppingList = () => {
   return (
     <div className="app">
       <h1 className="title_app">Lista de Compras</h1>
-      <form onSubmit={handleSubmit} className="add_input">
+      <form onSubmit={handleAdd} className="add_input">
         <p className="totalPrice">${totalPrice.toFixed(2)}</p>
         <input
           className="input_field"
@@ -177,4 +198,3 @@ const ShoppingList = () => {
 };
 
 export default ShoppingList;
-
